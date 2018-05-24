@@ -1,3 +1,7 @@
+h1 {
+  text-align: center;
+}
+
 .cards {
   background-image: url(white_back.ong.png);
   background-repeat: no-repeat;
@@ -5,10 +9,16 @@
   text-align: center;
   height: 200px;
   width: 200px;
-  display: block-inline;
+}
+
+#timer_box {
+  width: 200px;
+  height: 200px;
+  text-align: center;
 }
 
 #cards_container {
+  margin-left: 400px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 10px;
