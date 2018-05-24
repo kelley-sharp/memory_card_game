@@ -1,0 +1,17 @@
+.cards {
+  background-image: url(white_back.ong.png);
+  background-repeat: no-repeat;
+  background-size: 200px;
+  text-align: center;
+  height: 200px;
+  width: 200px;
+  display: block-inline;
+}
+
+#cards_container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+  width: 50px;
+}
