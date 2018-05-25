@@ -2,8 +2,14 @@ h1 {
   text-align: center;
 }
 
+body {
+  background-image: url(images/white_yellow.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .cards {
-  background-image: url(white_back.ong.png);
+  background-image: url(images/white_back.ong.png);
   background-repeat: no-repeat;
   background-size: 200px;
   text-align: center;
@@ -14,6 +20,10 @@ h1 {
 #timer_box {
   width: 200px;
   height: 200px;
+  text-align: center;
+}
+
+h2 {
   text-align: center;
 }
 
