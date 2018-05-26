@@ -9,20 +9,15 @@ document.addEventListener('DOMContentLoaded', function() {
     'images/red_work_out.gif',
     'images/superman_dog.gif'
   ];
+
+  var playButton = document.getElementById('play_button');
+  playButton.addEventListener('click', shuffle);
+
   var cardsContainer = document.querySelector('#cards_container');
-
-  // var playButton = document.getElementById('play_button');
-  // playButton.addEventListener('click', timer());
-
   cardsContainer.addEventListener('click', showcard);
 
-  function showcard(e) {
-    let cardId = e.target.id;
-    e.target.style.backgroundImage = `url(${cardImages[cardId]})`;
-  }
-
-  function shuffle(array) {
-    var currentIndex = array.length,
+  function shuffle() {
+    var currentIndex = cardImages.length,
       temporaryValue,
       randomIndex;
 
@@ -33,11 +28,16 @@ document.addEventListener('DOMContentLoaded', function() {
       currentIndex -= 1;
 
       // And swap it with the current element.
-      temporaryValue = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;
+      temporaryValue = cardImages[currentIndex];
+      cardImages[currentIndex] = cardImages[randomIndex];
+      cardImages[randomIndex] = temporaryValue;
     }
 
-    return array;
+    return cardImages;
+  }
+
+  function showcard(e) {
+    let cardId = e.target.id;
+    e.target.style.backgroundImage = `url(${cardImages[cardId]})`;
   }
 });
