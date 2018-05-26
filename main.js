@@ -1,20 +1,24 @@
 document.addEventListener('DOMContentLoaded', function() {
   var cardImages = [
     'images/cat_bowl.gif',
-    'images/racoon_sprinkler.gif',
+    'images/hedgehog_piano.gif',
+    'images/red_work_out.gif',
+    'images/superman_dog.gif',
+    'images/cat_bowl.gif',
+    'images/hedgehog_piano.gif',
     'images/red_work_out.gif',
     'images/superman_dog.gif'
   ];
-  var cards = document.querySelector('.cards');
+  var cardsContainer = document.querySelector('#cards_container');
 
   // var playButton = document.getElementById('play_button');
   // playButton.addEventListener('click', timer());
 
-  cards.addEventListener('click', showcard);
+  cardsContainer.addEventListener('click', showcard);
 
   function showcard(e) {
-    let i = e.target.id;
-    e.target.style.backgroundImage = `url(${cardImages[i]})`;
+    let cardId = e.target.id;
+    e.target.style.backgroundImage = `url(${cardImages[cardId]})`;
   }
 
   function shuffle(array) {

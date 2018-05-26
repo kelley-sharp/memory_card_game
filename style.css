@@ -8,7 +8,7 @@ body {
   background-size: cover;
 }
 
-.cards {
+.card {
   background-image: url(images/white_back.ong.png);
   background-repeat: no-repeat;
   background-size: 200px;
