@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-  var cardImages = [
+  const cardImages = [
     'images/cat_bowl.gif',
     'images/cat_toothbrush.gif',
     'images/pug_face.gif',
@@ -11,29 +11,26 @@ document.addEventListener('DOMContentLoaded', function() {
   ];
 
   //game state
-  var state = {
+  const state = {
     firstFlip: { id: null, img: null },
-    secondFlip: null,
-    didWin: false,
-    timer: 0
+    pairsComplete: 0,
+    guess: 0,
+    highScore: null
   };
 
-  //play button clicked, shuffles cards
-  var playButton = document.getElementById('play_button');
-  playButton.addEventListener('click', shuffle);
+  //play button clicked, shuffles cards, changes "play game" to "reset"
+  const shuffleButton = document.getElementById('shuffle_button');
+  shuffleButton.addEventListener('click', shuffle);
 
-  //play button clicked, says reset. resets game.
-  playButton.addEventListener('click', reset);
+  //
 
   //if all the cards are showing, display "You win"
 
-  var cardsContainer = document.querySelector('#cards_container');
+  const cardsContainer = document.querySelector('#cards_container');
   cardsContainer.addEventListener('click', showcard);
 
-  function reset() {}
-
   function shuffle() {
-    var currentIndex = cardImages.length,
+    let currentIndex = cardImages.length,
       temporaryValue,
       randomIndex;
 
@@ -48,23 +45,53 @@ document.addEventListener('DOMContentLoaded', function() {
       cardImages[currentIndex] = cardImages[randomIndex];
       cardImages[randomIndex] = temporaryValue;
     }
-
-    return cardImages;
   }
 
   function showcard(e) {
-    let cardId = e.target.id;
-    let gif = cardImages[cardId];
-    e.target.style.backgroundImage = `url(${gif})`;
-    //if two cards are shown and images are not equal, change images back to white_back.
-    //if there wasnt a first card showing,
+    const card = e.target;
+    const img = cardImages[card.id];
+
+    if (card.className !== 'card' || card.style.backgroundImage) {
+      return;
+    }
+
+    // if this is the first flip
     if (state.firstFlip.id === null) {
-      state.firstFlip.img = gif;
-      state.firstFlip.id = cardId;
-      //else there was a first card showing, make both cards revert to white_back.
-    } else if (state.firstFlip.id !== null) {
-      e.target.style.backgroundImage = null;
-      state.firstFlip.img = null;
+      // set the image
+      card.style.backgroundImage = `url(${img})`;
+      // store flip in state
+      state.firstFlip.id = card.id;
+      state.firstFlip.img = img;
+    } else {
+      state.guess++;
+      document.getElementById('guess_counter').innerText = state.guess;
+      // set second card image
+      card.style.backgroundImage = `url(${img})`;
+
+      // if there was no match
+      if (img !== state.firstFlip.img) {
+        setTimeout(function() {
+          // look up the first card in the DOM and reset its background
+          document.getElementById(
+            state.firstFlip.id
+          ).style.backgroundImage = null;
+
+          // reset the second card (current card)
+          card.style.backgroundImage = null;
+
+          // clear out state
+          state.firstFlip.id = null;
+          state.firstFlip.img = null;
+        }, 1000);
+      } else {
+        state.firstFlip.id = null;
+        state.firstFlip.img = null;
+        state.pairsComplete++;
+
+        if (state.pairsComplete === 4) {
+          alert('YOU WON!');
+        }
+      }
     }
   }
 });
