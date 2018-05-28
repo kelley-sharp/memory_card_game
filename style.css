@@ -3,13 +3,15 @@ h1 {
 }
 
 body {
-  background-image: url(images/white_yellow.svg);
+  background-image: url('images/Plasticine.jpg');
   background-repeat: no-repeat;
   background-size: cover;
+  color: black;
+  font-family: 'Indie Flower', cursive;
 }
 
 .card {
-  background-image: url(images/white_back.ong.png);
+  background-image: url('images/black-ghost-back.png');
   background-repeat: no-repeat;
   background-size: 200px;
   text-align: center;
@@ -25,6 +27,7 @@ body {
 
 h2 {
   text-align: center;
+  margin-bottom: 0px;
 }
 
 #cards_container {
@@ -34,4 +37,14 @@ h2 {
   grid-gap: 10px;
   grid-auto-rows: minmax(100px, auto);
   width: 50px;
+}
+
+#informer {
+  text-align: center;
+  animation-name: tada;
+  animation-duration: 3s;
+}
+
+#guess_counter {
+  margin-top: 0px;
 }
