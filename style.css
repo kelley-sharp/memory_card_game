@@ -25,18 +25,18 @@ body {
   text-align: center;
 }
 
-h2 {
+#score {
   text-align: center;
-  margin-bottom: 0px;
+  margin-top: -25px;
 }
 
 #cards_container {
-  margin-left: 400px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   grid-gap: 10px;
   grid-auto-rows: minmax(100px, auto);
   width: 50px;
+  margin-left: 178px;
 }
 
 #informer {
@@ -46,5 +46,5 @@ h2 {
 }
 
 #guess_counter {
-  margin-top: 0px;
+  margin-top: -25px;
 }

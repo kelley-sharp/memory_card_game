@@ -7,7 +7,13 @@ document.addEventListener('DOMContentLoaded', function() {
     'images/cat_bowl.gif',
     'images/cat_toothbrush.gif',
     'images/pug_face.gif',
-    'images/high_five.gif'
+    'images/high_five.gif',
+    'images/dog_swing.gif',
+    'images/dog_swing.gif',
+    'images/cat_flower.gif',
+    'images/cat_flower.gif',
+    'images/bathtime_dog.gif',
+    'images/bathtime_dog.gif'
   ];
 
   //game state
@@ -68,9 +74,8 @@ document.addEventListener('DOMContentLoaded', function() {
         state.firstFlip.img = null;
         state.pairsComplete++;
 
-        if (state.pairsComplete === 4) {
-          var informer = document.getElementById('informer');
-          informer.innerText = '* !! You WON !! *';
+        if (state.pairsComplete === 7) {
+          alert('* !! You WON !! *');
           var guess = state.guess;
           var highScore = state.highScore;
           if (guess > highScore) {
@@ -93,9 +98,14 @@ document.addEventListener('DOMContentLoaded', function() {
     state.highScore = null;
     state.guess = 0;
     var cards = document.querySelectorAll('.card');
-    cards.style.backgroundImage = null;
-    cards.style.border = null;
+    for (let i = 0; i < cards.length; i++) {
+      cards[i].style.backgroundImage = null;
+      cards[i].style.border = null;
+    }
     document.getElementById('informer').innerText = null;
+    state.guess = 0;
+    document.getElementById('guess_counter').innerText = '0';
+
     shuffle();
   }
 
@@ -119,4 +129,3 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 //reset game on shuffle
-//update high score
