@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
     bestScore: Infinity
   };
 
+  //Show card when clicked
   const cardsContainer = document.querySelector('#cards_container');
   cardsContainer.addEventListener('click', showcard);
 
@@ -100,15 +101,21 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function newGame() {
+    //set background back to card back (null)
     var cards = document.querySelectorAll('.card');
     for (let i = 0; i < cards.length; i++) {
       cards[i].style.backgroundImage = null;
       cards[i].style.border = null;
     }
+    //take away text about best score
     document.getElementById('informer').innerText = null;
+
+    //reset game state
     state.guess = 0;
     state.pairsComplete = 0;
     document.getElementById('guess_counter').innerText = '0';
+
+    //shuffle cards
     shuffle();
   }
 
@@ -130,5 +137,3 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 });
-
-//reset game on shuffle
