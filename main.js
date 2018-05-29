@@ -1,30 +1,29 @@
 document.addEventListener('DOMContentLoaded', function() {
   const cardImages = [
     'images/cat_bowl.gif',
+    'images/cat_flower.gif',
     'images/cat_toothbrush.gif',
     'images/pug_face.gif',
     'images/high_five.gif',
+    'images/dog_swing.gif',
     'images/cat_bowl.gif',
     'images/cat_toothbrush.gif',
+    'images/bathtime_dog.gif',
     'images/pug_face.gif',
     'images/high_five.gif',
     'images/dog_swing.gif',
-    'images/dog_swing.gif',
     'images/cat_flower.gif',
-    'images/cat_flower.gif',
-    'images/bathtime_dog.gif',
     'images/bathtime_dog.gif'
   ];
 
   //game state
   const state = {
     firstFlip: { id: null, img: null },
+    didSecondFlip: false,
     pairsComplete: 0,
     guess: 0,
-    highScore: null
+    bestScore: Infinity
   };
-
-  //if all the cards are showing, display "You win"
 
   const cardsContainer = document.querySelector('#cards_container');
   cardsContainer.addEventListener('click', showcard);
@@ -33,7 +32,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const card = e.target;
     const img = cardImages[card.id];
 
-    if (card.className !== 'card' || card.style.backgroundImage) {
+    if (
+      card.className !== 'card' ||
+      card.style.backgroundImage ||
+      state.didSecondFlip
+    ) {
       return;
     }
 
@@ -41,12 +44,12 @@ document.addEventListener('DOMContentLoaded', function() {
     if (state.firstFlip.id === null) {
       // set the image
       card.style.backgroundImage = `url(${img})`;
-      //give image a border
       card.style.border = '10px solid black';
       // store flip in state
       state.firstFlip.id = card.id;
       state.firstFlip.img = img;
     } else {
+      //add a guess to the score
       state.guess++;
       document.getElementById('guess_counter').innerText = state.guess;
       // set second card image
@@ -55,6 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
       // if there was no match
       if (img !== state.firstFlip.img) {
+        state.didSecondFlip = true;
         setTimeout(function() {
           // look up the first card in the DOM and reset its background
           var firstCard = document.getElementById(state.firstFlip.id);
@@ -68,25 +72,27 @@ document.addEventListener('DOMContentLoaded', function() {
           // clear out state
           state.firstFlip.id = null;
           state.firstFlip.img = null;
+          state.didSecondFlip = false;
         }, 1000);
       } else {
         state.firstFlip.id = null;
         state.firstFlip.img = null;
         state.pairsComplete++;
 
+        //if all the cards are showing, display "You win", update best score.
         if (state.pairsComplete === 7) {
           alert('* !! You WON !! *');
           var guess = state.guess;
-          var highScore = state.highScore;
-          if (guess > highScore) {
-            highScore = guess;
+          var bestScore = state.bestScore;
+          if (guess < bestScore) {
+            bestScore = guess;
             guess = 0;
-            document.getElementById('informer').innerText = 'New High Score!';
+            document.getElementById('informer').innerText = 'New Best Score!';
             document.getElementById(
               'score'
-            ).innerText = `High Score: ${highScore}`;
+            ).innerText = `Best Score: ${bestScore}`;
           }
-          //add event listener to shuffle button
+          //add event listener to shuffle button to start new game.
           const shuffleButton = document.getElementById('shuffle_button');
           shuffleButton.addEventListener('click', newGame);
         }
@@ -95,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function newGame() {
-    state.highScore = null;
+    state.bestScore = null;
     state.guess = 0;
     var cards = document.querySelectorAll('.card');
     for (let i = 0; i < cards.length; i++) {
