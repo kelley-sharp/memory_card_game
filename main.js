@@ -83,14 +83,13 @@ document.addEventListener('DOMContentLoaded', function() {
         if (state.pairsComplete === 7) {
           alert('* !! You WON !! *');
           var guess = state.guess;
-          var bestScore = state.bestScore;
-          if (guess < bestScore) {
-            bestScore = guess;
+          if (guess < state.bestScore) {
+            state.bestScore = guess;
             guess = 0;
             document.getElementById('informer').innerText = 'New Best Score!';
-            document.getElementById(
-              'score'
-            ).innerText = `Best Score: ${bestScore}`;
+            document.getElementById('score').innerText = `Best Score: ${
+              state.bestScore
+            }`;
           }
           //add event listener to shuffle button to start new game.
           const shuffleButton = document.getElementById('shuffle_button');
@@ -101,8 +100,6 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function newGame() {
-    state.bestScore = null;
-    state.guess = 0;
     var cards = document.querySelectorAll('.card');
     for (let i = 0; i < cards.length; i++) {
       cards[i].style.backgroundImage = null;
@@ -110,8 +107,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     document.getElementById('informer').innerText = null;
     state.guess = 0;
+    state.pairsComplete = 0;
     document.getElementById('guess_counter').innerText = '0';
-
     shuffle();
   }
 
