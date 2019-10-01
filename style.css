@@ -12,7 +12,7 @@ body {
 
 .card {
   background-image: url('images/black-ghost-back.png');
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   background-size: 200px;
   text-align: center;
   height: 200px;
@@ -33,10 +33,7 @@ body {
 #cards_container {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-gap: 10px;
   grid-auto-rows: minmax(100px, auto);
-  width: 50px;
-  margin-left: 178px;
 }
 
 #informer {
@@ -46,4 +43,12 @@ body {
 
 #guess_counter {
   margin-top: -25px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  flex-flow: column nowrap;
+  align-items: center;
+  margin: auto;
 }
