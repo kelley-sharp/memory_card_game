@@ -11,12 +11,8 @@ body {
 }
 
 .card {
-  background-image: url('images/black-ghost-back.png');
-  background-repeat: repeat;
-  background-size: 200px;
-  text-align: center;
-  height: 200px;
-  width: 200px;
+  /* background-image: url('images/black-ghost-back.png'); */
+  background-repeat: no-repeat;
 }
 
 #timer_box {
@@ -51,4 +47,10 @@ body {
   flex-flow: column nowrap;
   align-items: center;
   margin: auto;
+}
+
+.image-holder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
