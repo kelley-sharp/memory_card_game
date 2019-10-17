@@ -1,4 +1,4 @@
-# memory-card-game
+# Memory Schmemory
 
 ## About
 
