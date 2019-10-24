@@ -6,6 +6,6 @@ I consider this game the first fully functioning program I made. Flip over the c
 
 ## How to Install
 
-1. Clone repo.
+1. Clone repository.
 
-2. Right click on index.html and open in default browser.
+2. Right click on index.html; open in default browser.
